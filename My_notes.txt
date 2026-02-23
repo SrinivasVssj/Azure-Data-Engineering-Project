@@ -1,0 +1,186 @@
+How JSON Objects look as input/outputs in ADF Pipelines
+get Meta data input sample
+{
+    "dataset": {
+        "referenceName": "generic_adls_parque_ds",
+        "type": "DatasetReference",
+        "parameters": {
+            "container": "bronze",
+            "file_path": "hosa",
+            "file_name": "encounters"
+        }
+    },
+    "fieldList": [
+        "exists"
+    ],
+    "storeSettings": {
+        "type": "AzureBlobFSReadSettings",
+        "recursive": true,
+        "enablePartitionDiscovery": false
+    },
+    "formatSettings": {
+        "type": "ParquetReadSettings"
+    }
+}
+
+output sample
+
+{
+	"exists": false,
+	"effectiveIntegrationRuntime": "AutoResolveIntegrationRuntime (East US 2)",
+	"executionDuration": 0,
+	"durationInQueue": {
+		"integrationRuntimeQueue": 0
+	},
+	"billingReference": {
+		"activityType": "PipelineActivity",
+		"billableDuration": [
+			{
+				"meterType": "AzureIR",
+				"duration": 0.016666666666666666,
+				"unit": "Hours"
+			}
+		]
+	}
+}
+
+Lookup input
+{
+    "dataset": {
+        "referenceName": "generic_adls_parque_ds",
+        "type": "DatasetReference",
+        "parameters": {
+            "container": "bronze",
+            "file_path": "hosa",
+            "file_name": "encounters"
+        }
+    },
+    "fieldList": [
+        "exists"
+    ],
+    "storeSettings": {
+        "type": "AzureBlobFSReadSettings",
+        "recursive": true,
+        "enablePartitionDiscovery": false
+    },
+    "formatSettings": {
+        "type": "ParquetReadSettings"
+    }
+}
+
+{
+	"count": 10,
+	"value": [
+		{
+			"database": "trendytech-hospital-a",
+			"datasource": "hos-a",
+			"tablename": "dbo.encounters",
+			"loadtype": "Incremental",
+			"watermark": "ModifiedDate",
+			"is_active": "0",
+			"targetpath": "hosa"
+		},
+		{
+			"database": "trendytech-hospital-a",
+			"datasource": "hos-a",
+			"tablename": "dbo.patients",
+			"loadtype": "Incremental",
+			"watermark": "ModifiedDate",
+			"is_active": "0",
+			"targetpath": "hosa"
+		},
+		{
+			"database": "trendytech-hospital-a",
+			"datasource": "hos-a",
+			"tablename": "dbo.transactions",
+			"loadtype": "Incremental",
+			"watermark": "ModifiedDate",
+			"is_active": "0",
+			"targetpath": "hosa"
+		},
+		{
+			"database": "trendytech-hospital-a",
+			"datasource": "hos-a",
+			"tablename": "dbo.providers",
+			"loadtype": "Full",
+			"watermark": null,
+			"is_active": "0",
+			"targetpath": "hosa"
+		},
+		{
+			"database": "trendytech-hospital-a",
+			"datasource": "hos-a",
+			"tablename": "dbo.departments",
+			"loadtype": "Full",
+			"watermark": null,
+			"is_active": "0",
+			"targetpath": "hosa"
+		},
+		{
+			"database": "trendytech-hospital-b",
+			"datasource": "hos-b",
+			"tablename": "dbo.encounters",
+			"loadtype": "Incremental",
+			"watermark": "ModifiedDate",
+			"is_active": "0",
+			"targetpath": "hosb"
+		},
+		{
+			"database": "trendytech-hospital-b",
+			"datasource": "hos-b",
+			"tablename": "dbo.patients",
+			"loadtype": "Incremental",
+			"watermark": "Updated_Date",
+			"is_active": "1",
+			"targetpath": "hosb"
+		},
+		{
+			"database": "trendytech-hospital-b",
+			"datasource": "hos-b",
+			"tablename": "dbo.transactions",
+			"loadtype": "Incremental",
+			"watermark": "ModifiedDate",
+			"is_active": "0",
+			"targetpath": "hosb"
+		},
+		{
+			"database": "trendytech-hospital-b",
+			"datasource": "hos-b",
+			"tablename": "dbo.providers",
+			"loadtype": "Full",
+			"watermark": null,
+			"is_active": "0",
+			"targetpath": "hosb"
+		},
+		{
+			"database": "trendytech-hospital-b",
+			"datasource": "hos-b",
+			"tablename": "dbo.departments",
+			"loadtype": "Full",
+			"watermark": null,
+			"is_active": "0",
+			"targetpath": "hosb"
+		}
+	],
+	"effectiveIntegrationRuntime": "AutoResolveIntegrationRuntime (East US 2)",
+	"billingReference": {
+		"activityType": "PipelineActivity",
+		"billableDuration": [
+			{
+				"meterType": "AzureIR",
+				"duration": 0.016666666666666666,
+				"unit": "Hours"
+			}
+		],
+		"totalBillableDuration": [
+			{
+				"meterType": "AzureIR",
+				"duration": 0.016666666666666666,
+				"unit": "Hours"
+			}
+		]
+	},
+	"durationInQueue": {
+		"integrationRuntimeQueue": 0
+	}
+}
